@@ -58,6 +58,7 @@ function Todo() {
       <h1 className="title">
         Todo List
         <span>Get one item done at a time</span>
+        <span>Get one item done at a time</span>
       </h1>
       <form autoComplete="off" className="form" onSubmit={handlerSubmit}>
         <input
