@@ -107,7 +107,7 @@ function Todo() {
           onChange={handlerShowTask}
         />
       </div>
-      <div>hellooooo it's tan here</div>
+      <div>hellooooo</div>
     </div>
   );
 }
