@@ -1,5 +1,10 @@
 import React, { useState } from "react";
+import Form from "./componer/Form";
+import Header from "./componer/Header";
+import Navbar from "./componer/Navbar";
+import TaskList from "./componer/TaskList";
 import "./Todostyle.css";
+
 function Todo() {
   const [tasks, setTasks] = useState([
     { id: "HTML and Css", title: "HTML and Css", status: false },
@@ -49,63 +54,20 @@ function Todo() {
   }
   return (
     <div className="container">
-      <div className="newdate">
-        <p className="date Day">Day</p>
-        <p className="date Week">Week</p>
-        <p className="date Month">Month</p>
-        <p className="date Year">Year</p>
-      </div>
-      <h1 className="title">
-        Todo List
-        <span>Get one item done at a time</span>
-      </h1>
-      <form autoComplete="off" className="form" onSubmit={handlerSubmit}>
-        <input
-          type="text"
-          id="newitem"
-          value={valueTask}
-          onChange={handlerChangeValue}
-        />
-        <button className="submit" type="submit">
-          ➕
-        </button>
-      </form>
-      <ul className="task-list">
-        {tasks
-          .filter((task) => (showTask ? task.status === false : true))
-          .map((task) => (
-            <li key={task.id} className={task.status ? "done" : ""}>
-              <div className="action">
-                <input
-                  type="checkbox"
-                  className="btn btn-action-done"
-                  checked={task.status}
-                  onChange={(e) =>
-                    handlerCheckedTask(task.id, e.target.checked)
-                  }
-                />
-                <span className="label">{task.title}</span>
-              </div>
-              <button
-                className="btn btn-action-delete"
-                onClick={() => remove(task.id)}
-              >
-                Delete
-              </button>
-            </li>
-          ))}
-      </ul>
-      <div className="filter-wrapper">
-        <label htmlFor="filter" className="filter-label">
-          show incompleted tasks only
-        </label>
-        <input
-          type="checkbox"
-          id="filter"
-          checked={showTask}
-          onChange={handlerShowTask}
-        />
-      </div>
+      <Navbar />
+      <Header />
+      <Form
+        handlerChangeValue={handlerChangeValue}
+        handlerSubmit={handlerSubmit}
+        valueTask={valueTask}
+      />
+      <TaskList
+        tasks={tasks}
+        showTask={showTask}
+        handlerCheckedTask={handlerCheckedTask}
+        remove={remove}
+        handlerShowTask={handlerShowTask}
+      />
     </div>
   );
 }
